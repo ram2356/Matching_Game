@@ -2,12 +2,10 @@ const section = document.querySelector("section");
 const playerLivesCount = document.querySelector("span");
 let playerLives = 10;
 
-
 // Link text
 playerLivesCount.textContent = playerLives;
 
-
-//Generate the data
+// Generate the data
 const getData = () => [
     { imgSrc: "images/Hashirama.jpeg", name: "Hashirama"},
     { imgSrc: "images/Hinata.jpeg", name: "Hinata"},
@@ -27,17 +25,17 @@ const getData = () => [
     { imgSrc: "images/Sasuke.jpeg", name: "Sasuke"},
 ];
 
-//Randomize
+// Randomize
 const randomize = () => {
     const cardData = getData();
     cardData.sort(() => Math.random() - 0.5);
     return cardData;
 };
 
-//Card Generator 
+// Card Generator 
 const cardGenerator = () => {
     const cardData = randomize();
-//Generate html
+// Generate html
     cardData.forEach(item => {
         const card = document.createElement("div");
         const face = document.createElement("img");
@@ -59,14 +57,14 @@ const cardGenerator = () => {
         });
     });
 };
-//Check card
+// Check card
 const checkCards = (e) => {
     console.log(e);
     const clickedCard = e.target;
     clickedCard.classList.add("flipped");
     const flippedCards = document.querySelectorAll('.flipped');
     const toggleCard = document.querySelectorAll('.toggleCard');
-    //Logic
+
     if(flippedCards.length === 2){
         if(
             flippedCards[0].getAttribute('name') === 
@@ -89,7 +87,7 @@ const checkCards = (e) => {
             }
         }
     }
-    //Run if we won the game 
+    // Run if we won the game 
     if (toggleCard.length === 16) {
         restart("🤙🏆🎊 congrats, you won. ");
     }
@@ -103,7 +101,7 @@ const restart = (text) => {
     section.style.pointerEvents = "none";
     cardData.forEach((item, index) => {
         cards[index].classList.remove('toggleCard');
-        //Randomize
+
         setTimeout(() => {
             cards[index].style.pointerEvents = "all";
             faces[index].src = item.imgSrc;
